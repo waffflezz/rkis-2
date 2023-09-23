@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+  <context:property-placeholder location="classpath:application.properties"/>
+
+  <bean id="cageBean"
+        class="ru.sfu.waffflezz.dependences.Cage">
+        <constructor-arg value="elephant"/>
+  </bean>
+
+  <bean id="aquariumBean"
+        class="ru.sfu.waffflezz.dependences.Aquarium">
+        <property name="fishName" value="${aquariumAnimalName}"/>
+        <property name="volume" value="${aquariumVolume}"/>
+  </bean>
+
+  <bean id="zooBean"
+        class="ru.sfu.waffflezz.Zoo">
+        <constructor-arg name="animalCage" ref="cageBean"/>
+        <constructor-arg name="fishAquarium" ref="aquariumBean"/>
+  </bean>
+</beans>
